@@ -18,8 +18,6 @@ mkdir -p ${MATLAB_INSTALL_LOCATION}
     --products ${MATLAB_PRODUCT_LIST} \
     || (echo "MPM Installation Failure. See below for more information:" && cat /tmp/mathworks_$(id -un).log && false)
 
-ls ${MATLAB_INSTALL_LOCATION}
-
 rm -f mpm /tmp/mathworks_$(id -un).log
 
 mkdir -p ${HOME}/.local/bin
