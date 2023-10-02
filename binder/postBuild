@@ -1,12 +1,13 @@
 #!/bin/bash
 
 wget -q https://www.mathworks.com/mpm/glnxa64/mpm
-
 chmod +x mpm
 
 MATLAB_RELEASE=r2023b
 MATLAB_INSTALL_LOCATION=/opt/mathworks/matlab/${MATLAB_RELEASE}
 MATLAB_PRODUCT_LIST=MATLAB
+
+mkdir -p ${MATLAB_INSTALL_LOCATION}
 
 ./mpm install \
     --release=${MATLAB_RELEASE} \
