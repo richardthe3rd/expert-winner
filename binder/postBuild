@@ -1,0 +1,11 @@
+#!/bin/bash
+
+wget -q https://www.mathworks.com/mpm/glnxa64/mpm \ 
+    && chmod +x mpm \
+    && ./mpm install \
+    --release=${MATLAB_RELEASE} \
+    --destination=${MATLAB_INSTALL_LOCATION} \
+    --products ${MATLAB_PRODUCT_LIST} \
+    || (echo "MPM Installation Failure. See below for more information:" && cat /tmp/mathworks_root.log && false) \
+    && rm -f mpm /tmp/mathworks_root.log \
+    && ln -s ${MATLAB_INSTALL_LOCATION}/bin/matlab /usr/local/bin/matlab
