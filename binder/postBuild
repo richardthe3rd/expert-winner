@@ -6,7 +6,7 @@ wget -q https://www.mathworks.com/mpm/glnxa64/mpm
 chmod +x mpm
 
 MATLAB_RELEASE=r2023b
-MATLAB_INSTALL_LOCATION=${HOME}/.local/mathworks/matlab/${MATLAB_RELEASE}
+MATLAB_INSTALL_LOCATION=${HOME}/.local/matlab
 MATLAB_PRODUCT_LIST=MATLAB
 
 mkdir -p ${MATLAB_INSTALL_LOCATION}
@@ -15,8 +15,13 @@ mkdir -p ${MATLAB_INSTALL_LOCATION}
     --release=${MATLAB_RELEASE} \
     --destination=${MATLAB_INSTALL_LOCATION} \
     --products ${MATLAB_PRODUCT_LIST} \
-    || (echo "MPM Installation Failure. See below for more information:" && cat /tmp/mathworks_root.log && false)
+    || (echo "MPM Installation Failure. See below for more information:" && cat /tmp/mathworks_$(id -un).log && false)
 
-rm -f mpm /tmp/mathworks_root.log
+ls ${MATLAB_INSTALL_LOCATION}
 
+ls /tmp
+
+rm -f mpm /tmp/mathworks_$(id -un).log
+
+mkdir -p ${HOME}/.local/bin
 ln -s ${MATLAB_INSTALL_LOCATION}/bin/matlab ${HOME}/.local/bin/matlab
